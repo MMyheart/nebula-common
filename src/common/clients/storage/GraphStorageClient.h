@@ -122,6 +122,8 @@ public:
         bool isEdge,
         int32_t tagOrEdge,
         const std::vector<std::string>& returnCols,
+        const std::vector<cpp2::OrderBy>& orderBy = std::vector<cpp2::OrderBy>(),
+        int64_t limit = std::numeric_limits<int64_t>::max(),
         folly::EventBase *evb = nullptr);
 
     folly::SemiFuture<StorageRpcResponse<cpp2::GetNeighborsResponse>> lookupAndTraverse(

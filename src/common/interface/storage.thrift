@@ -103,6 +103,7 @@ struct OrderBy {
     // An expression which result will be used to sort
     1: binary           prop,
     2: OrderDirection   direction,
+    3: i32              pos,
 }
 
 
@@ -511,6 +512,8 @@ struct IndexSpec {
     1: required list<IndexQueryContext>   contexts,
     2: required bool                      is_edge,
     3: required i32                       tag_or_edge_id,
+    4: optional list<OrderBy>             order_by,
+    5: optional i64                       limit,
 }
 
 

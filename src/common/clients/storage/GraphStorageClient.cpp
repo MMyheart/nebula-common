@@ -474,6 +474,8 @@ GraphStorageClient::lookupIndex(GraphSpaceID space,
                                 bool isEdge,
                                 int32_t tagOrEdge,
                                 const std::vector<std::string>& returnCols,
+                                const std::vector<cpp2::OrderBy>& orderBy,
+                                int64_t limit,
                                 folly::EventBase *evb) {
     auto status = getHostParts(space);
     if (!status.ok()) {
@@ -494,6 +496,10 @@ GraphStorageClient::lookupIndex(GraphSpaceID space,
         spec.set_contexts(contexts);
         spec.set_is_edge(isEdge);
         spec.set_tag_or_edge_id(tagOrEdge);
+        if (!orderBy.empty()) {
+            spec.set_order_by(orderBy);
+        }
+        spec.set_limit(limit);
 
         req.set_indices(spec);
     }
